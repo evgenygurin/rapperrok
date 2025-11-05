@@ -9,7 +9,7 @@
 
 Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Riffusion**, **Nuro**, and **Producer** models.
 
-[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai)
+[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai) | [Models](./docs/MODELS.md) | [Endpoints](./docs/ENDPOINTS.md)
 
 </div>
 
@@ -422,6 +422,46 @@ rapperrok/
 ├── examples/                # Usage examples
 └── docs/                    # Documentation
 ```
+
+## Documentation
+
+### Comprehensive Guides
+
+- **[API Reference](./docs/API_REFERENCE.md)** - Complete API documentation with all endpoints and official docs
+- **[Models Guide](./docs/MODELS.md)** - Detailed comparison of Suno, Producer, Nuro, and Riffusion models
+- **[Endpoints Reference](./docs/ENDPOINTS.md)** - All API endpoints with request/response examples
+- **[Quick Start](./QUICKSTART.md)** - Get started quickly with examples
+- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute to the project
+
+### Official AI Music API Docs
+
+- **Official Docs**: [https://docs.aimusicapi.ai](https://docs.aimusicapi.ai)
+- **Main Website**: [https://aimusicapi.ai](https://aimusicapi.ai)
+- **Dashboard**: [https://aimusicapi.ai/dashboard](https://aimusicapi.ai/dashboard)
+
+### Quick Links by Model
+
+#### Suno V4
+- [Suno API Overview](https://docs.aimusicapi.ai/suno-api-instructions.md)
+- [Create Music](https://docs.aimusicapi.ai/create-suno-music.md)
+- [Stems Separation](https://docs.aimusicapi.ai/stems-basic.md)
+- [Custom Personas](https://docs.aimusicapi.ai/create-suno-persona.md)
+
+#### Producer (FUZZ-2.0)
+- [Producer API Overview](https://docs.aimusicapi.ai/producer-api-overview.md)
+- [Create Music](https://docs.aimusicapi.ai/create-producer-music.md)
+- [Request Examples](https://docs.aimusicapi.ai/producer-api-examples.md)
+
+#### Nuro
+- [Nuro API Overview](https://docs.aimusicapi.ai/nuro-api-overview.md)
+- [Create Vocal Music](https://docs.aimusicapi.ai/create-vocal-music-nuro.md)
+- [Create Instrumental](https://docs.aimusicapi.ai/create-instrument-music-nuro.md)
+
+### More Resources
+
+- **Examples**: See [examples/](./examples) directory for code samples
+- **API Status**: Check [API_STATUS.md](./API_STATUS.md) for service status
+- **Changelog**: [https://aimusicapi.featurebase.app/en/changelog](https://aimusicapi.featurebase.app/en/changelog)
 
 ## Contributing
 
