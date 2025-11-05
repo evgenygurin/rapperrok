@@ -235,7 +235,7 @@ Set these in your `.env` file:
 AIMUSIC_API_KEY=your_api_key_here
 
 # Optional
-AIMUSIC_BASE_URL=https://api.aimusicapi.com
+AIMUSIC_BASE_URL=https://api.sunoapi.com
 LOG_LEVEL=INFO
 DEFAULT_TIMEOUT=30
 MAX_RETRIES=3

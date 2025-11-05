@@ -483,11 +483,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you encounter `SSL: TLSV1_UNRECOGNIZED_NAME` errors:
 
-1. **Check your .env file** - Make sure you're using `api.aimusicapi.ai` (not `.com`):
+1. **Check your .env file** - Make sure you're using the correct API base URL:
 
    ```bash
    grep AIMUSIC_BASE_URL .env
-   # Should show: AIMUSIC_BASE_URL=https://api.aimusicapi.ai
+   # Should show: AIMUSIC_BASE_URL=https://api.sunoapi.com
    ```
 
 2. **Clear environment variables**:
@@ -499,7 +499,7 @@ If you encounter `SSL: TLSV1_UNRECOGNIZED_NAME` errors:
 3. **Verify connectivity**:
 
    ```bash
-   curl -I https://api.aimusicapi.ai
+   curl -I https://api.sunoapi.com
    # Should return: HTTP/1.1 with SSL OK
    ```
 

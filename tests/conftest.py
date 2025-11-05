@@ -12,7 +12,7 @@ def api_key():
 @pytest.fixture
 def base_url():
     """Test base URL."""
-    return "https://api.aimusicapi.com"
+    return "https://api.sunoapi.com"
 
 
 @pytest.fixture
@@ -36,8 +36,8 @@ def mock_completed_response():
         "clips": [
             {
                 "clip_id": "clip_test_456",
-                "audio_url": "https://cdn.aimusicapi.com/music/clip_test_456.mp3",
-                "video_url": "https://cdn.aimusicapi.com/video/clip_test_456.mp4",
+                "audio_url": "https://cdn.sunoapi.com/music/clip_test_456.mp3",
+                "video_url": "https://cdn.sunoapi.com/video/clip_test_456.mp4",
                 "metadata": {
                     "title": "Test Song",
                     "duration": 60,
