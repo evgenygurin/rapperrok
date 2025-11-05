@@ -68,11 +68,9 @@ async def check_credits():
     async with AIMusicClient() as client:
         credits = await client.get_credits()
 
-        print(f"Total Credits: {credits.total}")
-        print(f"Used: {credits.used}")
-        print(f"Available: {credits.available}")
-        if credits.monthly_quota:
-            print(f"Monthly Quota: {credits.monthly_quota}")
+        print(f"Available Credits: {credits.credits}")
+        print(f"Extra Credits: {credits.extra_credits}")
+        print(f"Total: {credits.credits + credits.extra_credits}")
 
 
 async def main():

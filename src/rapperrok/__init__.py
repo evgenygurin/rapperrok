@@ -101,7 +101,7 @@ class AIMusicClient:
 
         self.base_url = base_url or os.getenv(
             "AIMUSIC_BASE_URL",
-            "https://api.aimusicapi.ai",
+            "https://api.sunoapi.com",
         )
         self.timeout = timeout
         self.retry_config = retry_config
@@ -149,7 +149,7 @@ class AIMusicClient:
             print(f"Used: {credits.used}")
             ```
         """
-        data = await self._base_client.get("/api/v1/credits")
+        data = await self._base_client.get("/api/v1/get-credits")
         return CreditsInfo(**data)
 
     async def generate_lyrics(

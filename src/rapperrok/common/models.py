@@ -105,14 +105,8 @@ class TaskResult(BaseResponse):
 class CreditsInfo(BaseModel):
     """Information about API credits."""
 
-    total: int = Field(..., description="Total credits purchased")
-    used: int = Field(..., description="Credits already used")
-    available: int = Field(..., description="Credits available for use")
-    monthly_quota: int | None = Field(
-        None,
-        description="Monthly subscription quota",
-    )
-    extra_credits: int | None = Field(None, description="Extra credits purchased")
+    credits: int = Field(..., description="Available credits")
+    extra_credits: int = Field(0, description="Extra credits purchased")
     reset_date: datetime | None = Field(
         None,
         description="Date when monthly quota resets",
