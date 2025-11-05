@@ -5,7 +5,7 @@ import httpx
 
 async def test_credits():
     api_key = os.getenv('AIMUSIC_API_KEY', 'test')
-    url = 'https://api.aimusicapi.ai/v1/credits'
+    url = 'https://api.sunoapi.com/api/v1/get-credits'
 
     print(f'Testing URL: {url}')
     print(f'API Key present: {bool(api_key and api_key != "test")}')
