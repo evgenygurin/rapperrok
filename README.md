@@ -7,9 +7,9 @@
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](http://mypy-lang.org/)
 
-Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Riffusion**, **Nuro**, and **Producer** models.
+Comprehensive Python client for AI Music API supporting **Suno V4**, **Producer (FUZZ-2.0)**, and **Nuro** models.
 
-[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai) | [Models](./docs/MODELS.md) | [Endpoints](./docs/ENDPOINTS.md)
+[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai) | [Feature Matrix](./API_FEATURE_MATRIX.md) | [Models](./docs/MODELS.md) | [Endpoints](./docs/ENDPOINTS.md)
 
 </div>
 
@@ -17,11 +17,11 @@ Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Ri
 
 ### Supported Models
 
-- **Suno V4** - Studio-quality music generation with vocals/instrumentals
-- **Producer (FUZZ-2.0)** - High-quality music in 30 seconds
-- **Nuro** - Complete 4-minute songs in 30 seconds
-- **Riffusion** - Real-time music generation (deprecated)
-- **Udio** - Advanced music creation
+- **Suno V4** - Studio-quality music generation with vocals/instrumentals (✅ 20/20 features)
+- **Producer (FUZZ-2.0)** - High-quality music in 30 seconds (✅ 11/11 features)
+- **Nuro** - Complete 4-minute songs in 30 seconds (✅ 4/4 features)
+
+See [API_FEATURE_MATRIX.md](./API_FEATURE_MATRIX.md) for detailed feature coverage.
 
 ### Core Capabilities
 
@@ -116,22 +116,6 @@ async def main():
     print(f"Video URL: {music.video_url}")
 
 asyncio.run(main())
-```
-
-### CLI Usage
-
-```bash
-# Generate music (via uv run if installed from source)
-uv run rapperrok suno create --description "jazz piano solo" --duration 60
-
-# Check credits
-uv run rapperrok credits
-
-# Get task status
-uv run rapperrok suno get --task-id abc123
-
-# Create with custom lyrics
-uv run rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
 ```
 
 ## Examples
@@ -337,6 +321,24 @@ await download_audio(
 - Full-length songs (up to 4 minutes)
 - Vocal and instrumental modes
 - Extensive customization
+
+## API Coverage
+
+**100% Feature Complete!** ✅
+
+This library implements **all documented endpoints** from the AI Music API:
+
+- **Suno V4**: 20/20 features (100%)
+- **Producer**: 11/11 features (100%)
+- **Nuro**: 4/4 features (100%)
+- **Common**: 12/12 features (credits, lyrics, webhooks, errors)
+
+For a detailed breakdown of every endpoint and feature, see [API_FEATURE_MATRIX.md](./API_FEATURE_MATRIX.md).
+
+### What's Not Included
+
+- **Riffusion** - ❌ API deprecated, correctly not implemented
+- **Udio** - ❌ No endpoint documentation available yet
 
 ## Development
 

@@ -17,7 +17,7 @@ Not sure which model to use? See the [Model Selection Guide](../docs/MODELS.md#c
 
 1. Install dependencies:
 ```bash
-cd /Users/laptop/dev/rapperrok
+cd rapperrok
 uv pip install -e .
 ```
 

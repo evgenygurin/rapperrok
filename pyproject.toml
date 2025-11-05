@@ -52,8 +52,8 @@ Documentation = "https://rapperrok.readthedocs.io"
 Repository = "https://github.com/rapperrok/rapperrok"
 Issues = "https://github.com/rapperrok/rapperrok/issues"
 
-[project.scripts]
-rapperrok = "rapperrok.cli:main"
+# [project.scripts]
+# rapperrok = "rapperrok.cli:main"  # TODO: CLI not implemented yet
 
 [build-system]
 requires = ["hatchling"]

@@ -5,8 +5,9 @@ Get started with RapperRok AI Music API client in 5 minutes!
 ## Installation
 
 ```bash
-# Clone repository
-cd /Users/laptop/dev/rapperrok
+# Clone and navigate to repository
+git clone https://github.com/rapperrok/rapperrok.git
+cd rapperrok
 
 # Install uv if not present
 pip install uv
@@ -288,7 +289,7 @@ rapperrok/
 ├── pyproject.toml         # Project config
 ├── Makefile               # Dev commands
 ├── README.md              # User docs
-└── CLAUDE.md              # AI assistant guide
+└── CONTRIBUTING.md        # Contributing guide
 ```
 
 ## API Models Overview
@@ -312,7 +313,7 @@ rapperrok/
 
 ## Help & Support
 
-- **Documentation**: [CLAUDE.md](CLAUDE.md) - Comprehensive guide
+- **Documentation**: [README.md](README.md) - Comprehensive guide
 - **Examples**: [examples/](examples/) - 4 detailed examples
 - **API Docs**: <https://docs.aimusicapi.ai>
 - **Issues**: Report bugs on GitHub
@@ -325,4 +326,4 @@ MIT License - see [LICENSE](LICENSE)
 
 **Happy music generation!**
 
-For more details, see [CLAUDE.md](CLAUDE.md) or [README.md](README.md).
+For more details, see [README.md](README.md) or [CONTRIBUTING.md](CONTRIBUTING.md).

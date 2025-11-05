@@ -190,7 +190,7 @@ async def test_suno_create(api_key, base_url, mock_task_response):
 
 5. **Update documentation**:
    - Update README.md if user-facing feature
-   - Update CLAUDE.md if architecture change
+   - Update CONTRIBUTING.md if development workflow changes
    - Update QUICKSTART.md if affects quick start
 
 6. **Run quality checks**:
@@ -253,7 +253,7 @@ git commit -m "test: add tests for webhook signature verification"
 - [ ] Type hints complete
 - [ ] Docstrings with examples
 - [ ] Examples demonstrate feature
-- [ ] Documentation updated
+- [ ] Documentation updated (README, QUICKSTART, etc.)
 - [ ] `make quality` passes
 - [ ] No new linter warnings
 - [ ] PR description is clear

@@ -27,6 +27,11 @@ ENV/
 env/
 .venv
 
+# Package manager lock files (library, not application)
+uv.lock
+poetry.lock
+Pipfile.lock
+
 # IDE
 .vscode/
 .idea/
@@ -38,6 +43,7 @@ env/
 # Testing
 .pytest_cache/
 .coverage
+coverage.xml
 htmlcov/
 .tox/
 .mypy_cache/
