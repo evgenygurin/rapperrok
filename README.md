@@ -1,0 +1,437 @@
+# RapperRok - AI Music API Python Client
+
+<div align="center">
+
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](http://mypy-lang.org/)
+
+Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Riffusion**, **Nuro**, and **Producer** models.
+
+[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai)
+
+</div>
+
+## Features
+
+### Supported Models
+
+- **Suno V4** - Studio-quality music generation with vocals/instrumentals
+- **Producer (FUZZ-2.0)** - High-quality music in 30 seconds
+- **Nuro** - Complete 4-minute songs in 30 seconds
+- **Riffusion** - Real-time music generation (deprecated)
+- **Udio** - Advanced music creation
+
+### Core Capabilities
+
+- **Music Generation**: Create, extend, cover, and remix tracks
+- **Vocal Processing**: Swap vocals, create personas, gender control
+- **Audio Processing**: Stems separation (basic/full), format conversion (MP3/WAV)
+- **Lyrics Generation**: AI-powered lyrics creation
+- **MIDI Export**: Extract MIDI data from tracks
+- **Webhook Integration**: Async notifications for long-running tasks
+- **Credit Management**: Track and manage API credits
+
+### Developer Experience
+
+- **Modern Python**: Python 3.12+ with type hints
+- **Async/Await**: Full async support with httpx
+- **Type Safe**: Complete type annotations with Pydantic
+- **Rich CLI**: Beautiful terminal output with progress tracking
+- **Retry Logic**: Automatic retry with exponential backoff
+- **Error Handling**: Comprehensive error messages and recovery
+
+## Installation
+
+### Using uv (recommended)
+
+```bash
+# Install uv if you don't have it
+pip install uv
+
+# Install rapperrok
+uv pip install rapperrok
+
+# Or with development dependencies
+uv pip install "rapperrok[dev]"
+```
+
+### Using pip
+
+```bash
+pip install rapperrok
+
+# Or with development dependencies
+pip install "rapperrok[dev]"
+```
+
+### From source
+
+```bash
+git clone https://github.com/rapperrok/rapperrok.git
+cd rapperrok
+uv pip install -e ".[dev]"
+```
+
+## Quick Start
+
+### Setup
+
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Edit .env and add your API key
+# AIMUSIC_API_KEY=your_api_key_here
+```
+
+### Basic Usage
+
+```python
+import asyncio
+from rapperrok import AIMusicClient
+
+async def main():
+    # Initialize client
+    client = AIMusicClient(api_key="your_api_key")
+
+    # Generate music with Suno
+    result = await client.suno.create_music(
+        description="upbeat electronic dance music with strong bass",
+        duration=30,
+        voice_gender="female"
+    )
+
+    print(f"Task ID: {result.task_id}")
+    print(f"Status: {result.status}")
+
+    # Wait for completion and get result
+    music = await client.suno.wait_for_completion(result.task_id)
+    print(f"Audio URL: {music.audio_url}")
+    print(f"Video URL: {music.video_url}")
+
+asyncio.run(main())
+```
+
+### CLI Usage
+
+```bash
+# Generate music
+rapperrok suno create --description "jazz piano solo" --duration 60
+
+# Check credits
+rapperrok credits
+
+# Get task status
+rapperrok suno get --task-id abc123
+
+# Create with custom lyrics
+rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
+```
+
+## Examples
+
+### Suno: Create Music with Vocals
+
+```python
+from rapperrok import AIMusicClient
+
+client = AIMusicClient()
+
+# Create music from description
+result = await client.suno.create_music(
+    description="emotional piano ballad about lost love",
+    duration=120,
+    voice_gender="male",
+    auto_lyrics=True
+)
+
+# Or with custom lyrics
+result = await client.suno.create_music_with_lyrics(
+    lyrics="Verse 1: Walking down the street...",
+    style="indie rock, acoustic guitar, drums",
+    title="My Song"
+)
+```
+
+### Suno: Extend and Concatenate
+
+```python
+# Extend existing track
+extended = await client.suno.extend_music(
+    audio_id="clip_abc123",
+    duration=60
+)
+
+# Concatenate multiple clips
+full_track = await client.suno.concat_music(
+    clip_ids=["clip_1", "clip_2", "clip_3"]
+)
+```
+
+### Suno: Stems Separation
+
+```python
+# Basic stems (vocals + instrumental)
+stems_basic = await client.suno.stems_basic(song_id="song_abc123")
+print(f"Vocals: {stems_basic.vocals_url}")
+print(f"Instrumental: {stems_basic.instrumental_url}")
+
+# Full stems (12 tracks)
+stems_full = await client.suno.stems_full(song_id="song_abc123")
+print(f"Lead Vocals: {stems_full.lead_vocals_url}")
+print(f"Drums: {stems_full.drums_url}")
+print(f"Bass: {stems_full.bass_url}")
+# ... and 9 more stems
+```
+
+### Producer: Fast Music Generation
+
+```python
+# Create music with Producer (30 seconds generation time)
+result = await client.producer.create_music(
+    description="energetic EDM track with drops",
+    operation="create",
+    duration=60
+)
+
+# Extend existing track
+extended = await client.producer.create_music(
+    audio_id="clip_xyz",
+    operation="extend",
+    duration=30
+)
+```
+
+### Nuro: Full Songs
+
+```python
+# Generate complete 4-minute song
+song = await client.nuro.create_vocal_music(
+    prompt="epic orchestral soundtrack with choir",
+    duration=240,
+    style="cinematic"
+)
+
+# Instrumental only
+instrumental = await client.nuro.create_instrumental_music(
+    prompt="ambient electronic atmosphere",
+    duration=180
+)
+```
+
+### Credits Management
+
+```python
+# Check available credits
+credits = await client.get_credits()
+print(f"Available: {credits.available}")
+print(f"Total: {credits.total}")
+print(f"Used: {credits.used}")
+```
+
+### Webhook Integration
+
+```python
+from rapperrok.webhooks import WebhookHandler
+
+handler = WebhookHandler(secret="your_webhook_secret")
+
+# Verify and parse webhook
+@app.post("/webhooks/aimusic")
+async def handle_webhook(request: Request):
+    payload = await request.json()
+    signature = request.headers.get("X-Webhook-Signature")
+
+    if handler.verify_signature(payload, signature):
+        event = handler.parse_event(payload)
+
+        if event.status == "completed":
+            print(f"Music ready: {event.audio_url}")
+        elif event.status == "failed":
+            print(f"Generation failed: {event.error}")
+
+    return {"status": "ok"}
+```
+
+## Advanced Features
+
+### Retry Logic
+
+```python
+from rapperrok import AIMusicClient, RetryConfig
+
+client = AIMusicClient(
+    retry_config=RetryConfig(
+        max_retries=5,
+        initial_delay=2.0,
+        max_delay=60.0,
+        exponential_base=2.0
+    )
+)
+```
+
+### Custom Timeout
+
+```python
+result = await client.suno.create_music(
+    description="long orchestral piece",
+    timeout=600  # 10 minutes
+)
+```
+
+### Batch Operations
+
+```python
+# Generate multiple tracks concurrently
+descriptions = [
+    "rock song",
+    "jazz melody",
+    "classical piano"
+]
+
+tasks = [
+    client.suno.create_music(desc)
+    for desc in descriptions
+]
+
+results = await asyncio.gather(*tasks)
+```
+
+### Download Audio
+
+```python
+from rapperrok.utils import download_audio
+
+# Download generated music
+await download_audio(
+    url=music.audio_url,
+    output_path="my_song.mp3"
+)
+```
+
+## API Models Overview
+
+### Suno V4
+- Create, extend, concat, cover music
+- Stems separation (basic: 2 tracks, full: 12 tracks)
+- Persona creation and custom voices
+- WAV/MIDI export
+- Voice gender control
+
+### Producer (FUZZ-2.0)
+- Fast generation (30 seconds)
+- Create, extend, cover, replace operations
+- Vocal/instrumental swapping
+- Variations generation
+
+### Nuro
+- Full-length songs (up to 4 minutes)
+- Vocal and instrumental modes
+- Extensive customization
+
+## Development
+
+### Setup Development Environment
+
+```bash
+# Clone repository
+git clone https://github.com/rapperrok/rapperrok.git
+cd rapperrok
+
+# Install with dev dependencies
+uv pip install -e ".[dev]"
+
+# Install pre-commit hooks
+pre-commit install
+```
+
+### Run Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov
+
+# Run specific test categories
+pytest -m unit
+pytest -m integration
+```
+
+### Code Quality
+
+```bash
+# Format code
+ruff format .
+
+# Lint
+ruff check .
+
+# Type check
+mypy src/
+
+# All checks
+make quality
+```
+
+## Project Structure
+
+```text
+rapperrok/
+├── src/rapperrok/
+│   ├── __init__.py          # Main client
+│   ├── common/              # Shared utilities
+│   │   ├── base.py          # Base HTTP client
+│   │   ├── models.py        # Common data models
+│   │   ├── exceptions.py    # Error handling
+│   │   └── utils.py         # Helper functions
+│   ├── suno/                # Suno API client
+│   │   ├── client.py
+│   │   └── models.py
+│   ├── producer/            # Producer API client
+│   │   ├── client.py
+│   │   └── models.py
+│   ├── nuro/                # Nuro API client
+│   │   ├── client.py
+│   │   └── models.py
+│   └── webhooks/            # Webhook handling
+│       ├── handler.py
+│       └── models.py
+├── tests/
+│   ├── unit/                # Unit tests
+│   └── integration/         # Integration tests
+├── examples/                # Usage examples
+└── docs/                    # Documentation
+```
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [AI Music API](https://docs.aimusicapi.ai) for providing the API
+- Built with modern Python tools: [uv](https://github.com/astral-sh/uv), [ruff](https://github.com/astral-sh/ruff), [httpx](https://www.python-httpx.org/), [pydantic](https://docs.pydantic.dev/)
+
+## Support
+
+- Documentation: https://rapperrok.readthedocs.io
+- Issues: https://github.com/rapperrok/rapperrok/issues
+- API Docs: https://docs.aimusicapi.ai
+
+---
+
+Made with ❤️ by the RapperRok Team
