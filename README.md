@@ -118,22 +118,6 @@ async def main():
 asyncio.run(main())
 ```
 
-### CLI Usage
-
-```bash
-# Generate music (via uv run if installed from source)
-uv run rapperrok suno create --description "jazz piano solo" --duration 60
-
-# Check credits
-uv run rapperrok credits
-
-# Get task status
-uv run rapperrok suno get --task-id abc123
-
-# Create with custom lyrics
-uv run rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
-```
-
 ## Examples
 
 ### Suno: Create Music with Vocals

@@ -114,8 +114,8 @@ async def manual_webhook_processing():
         "status": "completed",
         "model": "suno",
         "clip_id": "clip_xyz789",
-        "audio_url": "https://cdn.aimusicapi.com/music/clip_xyz789.mp3",
-        "video_url": "https://cdn.aimusicapi.com/video/clip_xyz789.mp4",
+        "audio_url": "https://cdn.aimusicapi.ai/music/clip_xyz789.mp3",
+        "video_url": "https://cdn.aimusicapi.ai/video/clip_xyz789.mp4",
         "timestamp": "2025-01-15T10:30:00Z",
     }
 
