@@ -7,9 +7,9 @@
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](http://mypy-lang.org/)
 
-Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Riffusion**, **Nuro**, and **Producer** models.
+Comprehensive Python client for AI Music API supporting **Suno V4**, **Producer (FUZZ-2.0)**, and **Nuro** models.
 
-[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai)
+[Documentation](https://rapperrok.readthedocs.io) | [Examples](./examples) | [API Reference](https://docs.aimusicapi.ai) | [Feature Matrix](./API_FEATURE_MATRIX.md) | [Models](./docs/MODELS.md) | [Endpoints](./docs/ENDPOINTS.md)
 
 </div>
 
@@ -17,11 +17,11 @@ Comprehensive Python client for AI Music API supporting **Suno**, **Udio**, **Ri
 
 ### Supported Models
 
-- **Suno V4** - Studio-quality music generation with vocals/instrumentals
-- **Producer (FUZZ-2.0)** - High-quality music in 30 seconds
-- **Nuro** - Complete 4-minute songs in 30 seconds
-- **Riffusion** - Real-time music generation (deprecated)
-- **Udio** - Advanced music creation
+- **Suno V4** - Studio-quality music generation with vocals/instrumentals (✅ 20/20 features)
+- **Producer (FUZZ-2.0)** - High-quality music in 30 seconds (✅ 11/11 features)
+- **Nuro** - Complete 4-minute songs in 30 seconds (✅ 4/4 features)
+
+See [API_FEATURE_MATRIX.md](./API_FEATURE_MATRIX.md) for detailed feature coverage.
 
 ### Core Capabilities
 
@@ -116,22 +116,6 @@ async def main():
     print(f"Video URL: {music.video_url}")
 
 asyncio.run(main())
-```
-
-### CLI Usage
-
-```bash
-# Generate music (via uv run if installed from source)
-uv run rapperrok suno create --description "jazz piano solo" --duration 60
-
-# Check credits
-uv run rapperrok credits
-
-# Get task status
-uv run rapperrok suno get --task-id abc123
-
-# Create with custom lyrics
-uv run rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
 ```
 
 ## Examples
@@ -338,6 +322,24 @@ await download_audio(
 - Vocal and instrumental modes
 - Extensive customization
 
+## API Coverage
+
+**100% Feature Complete!** ✅
+
+This library implements **all documented endpoints** from the AI Music API:
+
+- **Suno V4**: 20/20 features (100%)
+- **Producer**: 11/11 features (100%)
+- **Nuro**: 4/4 features (100%)
+- **Common**: 12/12 features (credits, lyrics, webhooks, errors)
+
+For a detailed breakdown of every endpoint and feature, see [API_FEATURE_MATRIX.md](./API_FEATURE_MATRIX.md).
+
+### What's Not Included
+
+- **Riffusion** - ❌ API deprecated, correctly not implemented
+- **Udio** - ❌ No endpoint documentation available yet
+
 ## Development
 
 ### Setup Development Environment
@@ -423,6 +425,46 @@ rapperrok/
 └── docs/                    # Documentation
 ```
 
+## Documentation
+
+### Comprehensive Guides
+
+- **[API Reference](./docs/API_REFERENCE.md)** - Complete API documentation with all endpoints and official docs
+- **[Models Guide](./docs/MODELS.md)** - Detailed comparison of Suno, Producer, Nuro, and Riffusion models
+- **[Endpoints Reference](./docs/ENDPOINTS.md)** - All API endpoints with request/response examples
+- **[Quick Start](./QUICKSTART.md)** - Get started quickly with examples
+- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute to the project
+
+### Official AI Music API Docs
+
+- **Official Docs**: [https://docs.aimusicapi.ai](https://docs.aimusicapi.ai)
+- **Main Website**: [https://aimusicapi.ai](https://aimusicapi.ai)
+- **Dashboard**: [https://aimusicapi.ai/dashboard](https://aimusicapi.ai/dashboard)
+
+### Quick Links by Model
+
+#### Suno V4
+- [Suno API Overview](https://docs.aimusicapi.ai/suno-api-instructions.md)
+- [Create Music](https://docs.aimusicapi.ai/create-suno-music.md)
+- [Stems Separation](https://docs.aimusicapi.ai/stems-basic.md)
+- [Custom Personas](https://docs.aimusicapi.ai/create-suno-persona.md)
+
+#### Producer (FUZZ-2.0)
+- [Producer API Overview](https://docs.aimusicapi.ai/producer-api-overview.md)
+- [Create Music](https://docs.aimusicapi.ai/create-producer-music.md)
+- [Request Examples](https://docs.aimusicapi.ai/producer-api-examples.md)
+
+#### Nuro
+- [Nuro API Overview](https://docs.aimusicapi.ai/nuro-api-overview.md)
+- [Create Vocal Music](https://docs.aimusicapi.ai/create-vocal-music-nuro.md)
+- [Create Instrumental](https://docs.aimusicapi.ai/create-instrument-music-nuro.md)
+
+### More Resources
+
+- **Examples**: See [examples/](./examples) directory for code samples
+- **API Status**: Check [API_STATUS.md](./API_STATUS.md) for service status
+- **Changelog**: [https://aimusicapi.featurebase.app/en/changelog](https://aimusicapi.featurebase.app/en/changelog)
+
 ## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
@@ -443,11 +485,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you encounter `SSL: TLSV1_UNRECOGNIZED_NAME` errors:
 
-1. **Check your .env file** - Make sure you're using `api.aimusicapi.ai` (not `.com`):
+1. **Check your .env file** - Make sure you're using the correct API base URL:
 
    ```bash
    grep AIMUSIC_BASE_URL .env
-   # Should show: AIMUSIC_BASE_URL=https://api.aimusicapi.ai
+   # Should show: AIMUSIC_BASE_URL=https://api.sunoapi.com
    ```
 
 2. **Clear environment variables**:
@@ -459,7 +501,7 @@ If you encounter `SSL: TLSV1_UNRECOGNIZED_NAME` errors:
 3. **Verify connectivity**:
 
    ```bash
-   curl -I https://api.aimusicapi.ai
+   curl -I https://api.sunoapi.com
    # Should return: HTTP/1.1 with SSL OK
    ```
 

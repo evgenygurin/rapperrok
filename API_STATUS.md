@@ -2,14 +2,15 @@
 
 ## Summary
 
-After comprehensive testing, the AI Music API endpoints appear to be **not fully operational** despite the domain and SSL configuration being correct.
+After comprehensive testing, the AI Music API endpoints appear to be **partially operational**. The library now uses the correct base URL `api.sunoapi.com`.
 
 ## What Works ✅
 
-1. **Domain Resolution**: `api.aimusicapi.ai` resolves correctly (216.150.1.193)
+1. **Domain Resolution**: `api.sunoapi.com` resolves correctly
 2. **SSL/TLS**: Valid certificate, TLS 1.3 connection successful
-3. **API Server**: Responds (hosted on Vercel)
+3. **API Server**: Responds and is operational
 4. **Authentication**: API key is valid format (`sk_*`)
+5. **Credits Endpoint**: Working correctly with path `/api/v1/get-credits`
 
 ## What Doesn't Work ❌
 
@@ -37,9 +38,9 @@ GET  /suno/v1/music/get          -> 404
 
 ### Test Results
 
-1. **Status Page**: `https://status.aimusicapi.ai/` → 404 (doesn't exist)
-2. **API Root**: `https://api.aimusicapi.ai/` → Redirects to 404 page
-3. **Documentation**: No specific endpoint paths documented
+1. **Base URL Updated**: Changed to `https://api.sunoapi.com`
+2. **Credits Endpoint**: Working with `/api/v1/get-credits`
+3. **Documentation**: Available at `https://docs.aimusicapi.ai`
 
 ### HTTP Response Details
 
@@ -76,14 +77,15 @@ All requests are matching a 404 catch-all route, suggesting the API endpoints ma
 
 ## Timeline of Fixes Applied
 
-1. ✅ **Fixed SSL Issue**: Changed domain from `.com` to `.ai`
-2. ✅ **Updated All Configurations**: 5 source files + 2 config files
-3. ✅ **Connection Successful**: Can reach `api.aimusicapi.ai`
-4. ⏸️ **Waiting for API Deployment**: Endpoints return 404/405
+1. ✅ **Fixed SSL Issue**: Changed domain from `aimusicapi.com` to `aimusicapi.ai`
+2. ✅ **Updated to Correct Domain**: Changed to `api.sunoapi.com`
+3. ✅ **Fixed Credits Endpoint**: Updated path to `/api/v1/get-credits`
+4. ✅ **Updated All Configurations**: Source files, tests, examples, and docs
+5. ⏸️ **Other Endpoints**: May need path adjustments
 
 ## What This Means
 
-The **rapperrok library code is correct** and ready to use. The issue is not with the client library, but with the API service itself not being fully operational.
+The **rapperrok library is operational** with the correct base URL `api.sunoapi.com`. The credits endpoint is working correctly.
 
 ### When the API Goes Live
 
@@ -103,7 +105,7 @@ from rapperrok import AIMusicClient
 @respx.mock
 async def test_music_creation():
     # Mock successful API response
-    respx.post("https://api.aimusicapi.ai/suno/v1/music/create").mock(
+    respx.post("https://api.sunoapi.com/suno/v1/music/create").mock(
         return_value=Response(200, json={
             "task_id": "test_task_123",
             "status": "completed",

@@ -2,11 +2,22 @@
 
 Comprehensive examples demonstrating all features of the RapperRok AI Music API client.
 
+## 📚 Documentation
+
+Before running these examples, check out the comprehensive documentation:
+
+- **[API Reference](../docs/API_REFERENCE.md)** - Complete API documentation with all endpoints
+- **[Models Guide](../docs/MODELS.md)** - Detailed comparison of Suno, Producer, Nuro, Riffusion
+- **[Endpoints Reference](../docs/ENDPOINTS.md)** - All API endpoints with request/response examples
+- **[Quick Start](../QUICKSTART.md)** - Get started quickly
+
+Not sure which model to use? See the [Model Selection Guide](../docs/MODELS.md#choosing-the-right-model).
+
 ## Setup
 
 1. Install dependencies:
 ```bash
-cd /Users/laptop/dev/rapperrok
+cd rapperrok
 uv pip install -e .
 ```
 
@@ -224,7 +235,7 @@ Set these in your `.env` file:
 AIMUSIC_API_KEY=your_api_key_here
 
 # Optional
-AIMUSIC_BASE_URL=https://api.aimusicapi.com
+AIMUSIC_BASE_URL=https://api.sunoapi.com
 LOG_LEVEL=INFO
 DEFAULT_TIMEOUT=30
 MAX_RETRIES=3
@@ -267,11 +278,35 @@ Approximate credit costs per operation:
 | Create music | Nuro | 20 |
 | Create instrumental | Nuro | 15 |
 
+## API Documentation by Model
+
+Each example uses specific AI models. Learn more about each model:
+
+### Suno V4 (Examples 01, 02)
+- **[Model Overview](../docs/MODELS.md#suno-v4)** - Features, pricing, use cases
+- **[API Endpoints](../docs/ENDPOINTS.md#suno-api-endpoints)** - All Suno endpoints
+- **[Official Docs](https://docs.aimusicapi.ai/suno-api-instructions.md)**
+
+### Producer/FUZZ-2.0 (Examples 01, 03)
+- **[Model Overview](../docs/MODELS.md#producer-fuzz-20)** - Features, pricing, use cases
+- **[API Endpoints](../docs/ENDPOINTS.md#producer-api-endpoints)** - All Producer endpoints
+- **[Official Docs](https://docs.aimusicapi.ai/producer-api-overview.md)**
+
+### Nuro (Example 01)
+- **[Model Overview](../docs/MODELS.md#nuro)** - Features, pricing, use cases
+- **[API Endpoints](../docs/ENDPOINTS.md#nuro-api-endpoints)** - All Nuro endpoints
+- **[Official Docs](https://docs.aimusicapi.ai/nuro-api-overview.md)**
+
+### Webhooks (Example 04)
+- **[Webhook Guide](../docs/ENDPOINTS.md#webhooks)** - Integration and verification
+- **[Official Docs](https://docs.aimusicapi.ai/webhook-guide.md)**
+
 ## Support
 
-- Documentation: https://rapperrok.readthedocs.io
-- API Docs: https://docs.aimusicapi.ai
-- Issues: https://github.com/rapperrok/rapperrok/issues
+- **Documentation**: https://rapperrok.readthedocs.io
+- **API Docs**: https://docs.aimusicapi.ai
+- **GitHub Issues**: https://github.com/rapperrok/rapperrok/issues
+- **Discord**: https://discord.gg/UFT2J2XK7d
 
 ## License
 
