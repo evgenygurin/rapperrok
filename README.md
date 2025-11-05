@@ -437,6 +437,68 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Troubleshooting
+
+### SSL/Connection Errors
+
+If you encounter `SSL: TLSV1_UNRECOGNIZED_NAME` errors:
+
+1. **Check your .env file** - Make sure you're using `api.aimusicapi.ai` (not `.com`):
+
+   ```bash
+   grep AIMUSIC_BASE_URL .env
+   # Should show: AIMUSIC_BASE_URL=https://api.aimusicapi.ai
+   ```
+
+2. **Clear environment variables**:
+
+   ```bash
+   unset AIMUSIC_BASE_URL
+   ```
+
+3. **Verify connectivity**:
+
+   ```bash
+   curl -I https://api.aimusicapi.ai
+   # Should return: HTTP/1.1 with SSL OK
+   ```
+
+### API Key Issues
+
+- Get your API key from: <https://aimusicapi.ai/dashboard/apikey>
+- Make sure it's set in `.env` or passed to the client
+- API keys start with `sk_`
+
+### Rate Limiting
+
+The API may rate limit requests. Use retry configuration:
+
+```python
+from rapperrok import AIMusicClient, RetryConfig
+
+client = AIMusicClient(
+    retry_config=RetryConfig(max_retries=5, initial_delay=2.0)
+)
+```
+
+### API Service Status (November 2025)
+
+**Note**: As of November 5, 2025, the AI Music API endpoints may not be fully deployed. If you receive 404/405 errors, this is a server-side issue, not a problem with the library.
+
+**Current Status**:
+- ✅ SSL/TLS connection works
+- ✅ API domain resolves correctly
+- ⏸️ Backend endpoints return 404/405 (not yet deployed)
+
+**What to do**:
+1. Join their [Discord](https://discord.gg/UFT2J2XK7d) for updates
+2. Check the [Changelog](https://aimusicapi.featurebase.app/en/changelog) for service updates
+3. Use mock testing for development (see `tests/` directory for examples)
+
+The library is ready and will work immediately once the API service is fully operational.
+
+See [API_STATUS.md](./API_STATUS.md) for detailed investigation results.
+
 ## Acknowledgments
 
 - [AI Music API](https://docs.aimusicapi.ai) for providing the API
@@ -447,6 +509,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Documentation: <https://rapperrok.readthedocs.io>
 - Issues: <https://github.com/rapperrok/rapperrok/issues>
 - API Docs: <https://docs.aimusicapi.ai>
+- Main Website: <https://aimusicapi.ai>
 
 ---
 

@@ -20,7 +20,7 @@ class NuroClient:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://api.aimusicapi.com",
+        base_url: str = "https://api.aimusicapi.ai",
         timeout: int = 30,
         retry_config: RetryConfig | None = None,
         poll_config: PollConfig | None = None,

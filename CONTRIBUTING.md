@@ -13,17 +13,20 @@ Thank you for your interest in contributing to RapperRok! This document provides
 ### Getting Started
 
 1. **Fork and clone the repository**:
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/rapperrok.git
    cd rapperrok
    ```
 
 2. **Install uv** (if not already installed):
+
    ```bash
    pip install uv
    ```
 
 3. **Install development dependencies**:
+
    ```bash
    make dev
    # Or manually
@@ -31,11 +34,13 @@ Thank you for your interest in contributing to RapperRok! This document provides
    ```
 
 4. **Install pre-commit hooks**:
+
    ```bash
    uv run pre-commit install
    ```
 
 5. **Set up environment**:
+
    ```bash
    cp .env.example .env
    # Edit .env and add your AIMUSIC_API_KEY
@@ -135,6 +140,7 @@ async def create_music(
 - All tests should be fast (<1 second)
 
 Example:
+
 ```python
 import pytest
 import respx
@@ -164,6 +170,7 @@ async def test_suno_create(api_key, base_url, mock_task_response):
 ## Adding New Features
 
 1. **Create a feature branch**:
+
    ```bash
    git checkout -b feature/my-feature
    ```
@@ -187,11 +194,13 @@ async def test_suno_create(api_key, base_url, mock_task_response):
    - Update QUICKSTART.md if affects quick start
 
 6. **Run quality checks**:
+
    ```bash
    make quality
    ```
 
 7. **Commit with conventional commit**:
+
    ```bash
    git commit -m "feat(suno): add stems full separation
 
@@ -202,6 +211,7 @@ async def test_suno_create(api_key, base_url, mock_task_response):
    ```
 
 8. **Push and create PR**:
+
    ```bash
    git push origin feature/my-feature
    ```
@@ -219,6 +229,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 - `chore:` - Maintenance tasks
 
 Examples:
+
 ```bash
 git commit -m "feat(producer): add swap_instrumental operation"
 git commit -m "fix(suno): handle timeout in wait_for_completion"

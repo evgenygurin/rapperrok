@@ -101,7 +101,7 @@ class AIMusicClient:
 
         self.base_url = base_url or os.getenv(
             "AIMUSIC_BASE_URL",
-            "https://api.aimusicapi.com",
+            "https://api.aimusicapi.ai",
         )
         self.timeout = timeout
         self.retry_config = retry_config
