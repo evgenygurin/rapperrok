@@ -66,11 +66,15 @@ pip install rapperrok
 pip install "rapperrok[dev]"
 ```
 
-### From source
+### From source (with uv)
 
 ```bash
 git clone https://github.com/rapperrok/rapperrok.git
 cd rapperrok
+
+# Install with uv (recommended for development)
+make dev
+# Or manually
 uv pip install -e ".[dev]"
 ```
 
@@ -117,17 +121,17 @@ asyncio.run(main())
 ### CLI Usage
 
 ```bash
-# Generate music
-rapperrok suno create --description "jazz piano solo" --duration 60
+# Generate music (via uv run if installed from source)
+uv run rapperrok suno create --description "jazz piano solo" --duration 60
 
 # Check credits
-rapperrok credits
+uv run rapperrok credits
 
 # Get task status
-rapperrok suno get --task-id abc123
+uv run rapperrok suno get --task-id abc123
 
 # Create with custom lyrics
-rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
+uv run rapperrok suno create --lyrics "path/to/lyrics.txt" --style "rock"
 ```
 
 ## Examples
@@ -340,38 +344,47 @@ await download_audio(
 git clone https://github.com/rapperrok/rapperrok.git
 cd rapperrok
 
-# Install with dev dependencies
+# Install with dev dependencies (via uv - recommended)
+make dev
+# Or manually
 uv pip install -e ".[dev]"
 
 # Install pre-commit hooks
-pre-commit install
+uv run pre-commit install
 ```
 
 ### Run Tests
 
 ```bash
-# Run all tests
-pytest
+# Run all tests (via make)
+make test
+
+# Or manually with uv run
+uv run pytest
 
 # Run with coverage
-pytest --cov
+uv run pytest --cov
 
 # Run specific test categories
-pytest -m unit
-pytest -m integration
+uv run pytest -m unit
+uv run pytest -m integration
 ```
 
 ### Code Quality
 
 ```bash
 # Format code
-ruff format .
+make format
+# Or manually
+uv run ruff format .
 
 # Lint
-ruff check .
+make lint
+# Or manually
+uv run ruff check .
 
 # Type check
-mypy src/
+uv run mypy src/
 
 # All checks
 make quality

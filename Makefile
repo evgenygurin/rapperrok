@@ -13,21 +13,21 @@ dev:  ## Install with development dependencies
 	uv pip install -e ".[dev]"
 
 test:  ## Run tests with coverage
-	pytest --cov=src/rapperrok --cov-report=term-missing --cov-report=html
+	uv run pytest --cov=src/rapperrok --cov-report=term-missing --cov-report=html
 
 test-unit:  ## Run unit tests only
-	pytest tests/unit -v
+	uv run pytest tests/unit -v
 
 test-integration:  ## Run integration tests (requires API key)
-	pytest tests/integration -v
+	uv run pytest tests/integration -v
 
 lint:  ## Run linters
-	ruff check src/ tests/
-	mypy src/
+	uv run ruff check src/ tests/
+	uv run mypy src/
 
 format:  ## Format code
-	ruff format src/ tests/
-	ruff check --fix src/ tests/
+	uv run ruff format src/ tests/
+	uv run ruff check --fix src/ tests/
 
 quality: lint test  ## Run all quality checks
 
@@ -44,22 +44,22 @@ clean:  ## Clean build artifacts
 	find . -type f -name "*.pyc" -delete
 
 build:  ## Build package
-	python -m build
+	uv build
 
 publish-test:  ## Publish to TestPyPI
-	python -m twine upload --repository testpypi dist/*
+	uv run twine upload --repository testpypi dist/*
 
 publish:  ## Publish to PyPI
-	python -m twine upload dist/*
+	uv run twine upload dist/*
 
 docs:  ## Build documentation
-	cd docs && make html
+	cd docs && uv run make html
 
 docs-serve:  ## Serve documentation locally
-	cd docs && make livehtml
+	cd docs && uv run make livehtml
 
 pre-commit:  ## Install pre-commit hooks
-	pre-commit install
+	uv run pre-commit install
 
 run-examples:  ## Run all examples (requires API key)
-	python examples/01_basic_usage.py
+	uv run python examples/01_basic_usage.py

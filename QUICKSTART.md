@@ -8,11 +8,15 @@ Get started with RapperRok AI Music API client in 5 minutes!
 # Clone repository
 cd /Users/laptop/dev/rapperrok
 
-# Install with uv (recommended)
+# Install uv if not present
 pip install uv
+
+# Install with uv (recommended)
+make dev
+# Or manually
 uv pip install -e ".[dev]"
 
-# Or with pip
+# Or with pip (not recommended for development)
 pip install -e ".[dev]"
 ```
 
@@ -63,7 +67,7 @@ if __name__ == "__main__":
 Run it:
 
 ```bash
-python test.py
+uv run python test.py
 ```
 
 ## Next Steps
@@ -72,16 +76,16 @@ python test.py
 
 ```bash
 # Basic operations (all models)
-python examples/01_basic_usage.py
+uv run python examples/01_basic_usage.py
 
 # Advanced Suno features (stems, personas, etc.)
-python examples/02_advanced_suno.py
+uv run python examples/02_advanced_suno.py
 
 # Producer operations (fast generation)
-python examples/03_producer_operations.py
+uv run python examples/03_producer_operations.py
 
 # Webhook integration
-python examples/04_webhook_integration.py
+uv run python examples/04_webhook_integration.py
 ```
 
 ### Run Tests
@@ -89,6 +93,9 @@ python examples/04_webhook_integration.py
 ```bash
 # All tests with coverage
 make test
+
+# Or manually with uv run
+uv run pytest --cov
 
 # Unit tests only (fast, no API key needed)
 make test-unit
@@ -99,9 +106,13 @@ make test-unit
 ```bash
 # Format code
 make format
+# Or manually
+uv run ruff format .
 
 # Lint
 make lint
+# Or manually
+uv run ruff check .
 
 # All checks
 make quality
@@ -248,12 +259,14 @@ except TaskFailedError as e:
 
 ## Development Commands
 
+All commands use `uv` for consistent dependency management:
+
 ```bash
 make help          # Show all commands
-make dev           # Install dev dependencies
-make test          # Run tests with coverage
-make lint          # Lint code
-make format        # Format code
+make dev           # Install dev dependencies (via uv)
+make test          # Run tests with coverage (via uv run)
+make lint          # Lint code (via uv run)
+make format        # Format code (via uv run)
 make quality       # Run all checks
 make clean         # Clean build artifacts
 ```
