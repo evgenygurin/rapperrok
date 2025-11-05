@@ -318,6 +318,7 @@ await download_audio(
 ## API Models Overview
 
 ### Suno V4
+
 - Create, extend, concat, cover music
 - Stems separation (basic: 2 tracks, full: 12 tracks)
 - Persona creation and custom voices
@@ -325,12 +326,14 @@ await download_audio(
 - Voice gender control
 
 ### Producer (FUZZ-2.0)
+
 - Fast generation (30 seconds)
 - Create, extend, cover, replace operations
 - Vocal/instrumental swapping
 - Variations generation
 
 ### Nuro
+
 - Full-length songs (up to 4 minutes)
 - Vocal and instrumental modes
 - Extensive customization
@@ -441,9 +444,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- Documentation: https://rapperrok.readthedocs.io
-- Issues: https://github.com/rapperrok/rapperrok/issues
-- API Docs: https://docs.aimusicapi.ai
+- Documentation: <https://rapperrok.readthedocs.io>
+- Issues: <https://github.com/rapperrok/rapperrok/issues>
+- API Docs: <https://docs.aimusicapi.ai>
 
 ---
 

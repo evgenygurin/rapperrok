@@ -314,7 +314,7 @@ rapperrok/
 
 - **Documentation**: [CLAUDE.md](CLAUDE.md) - Comprehensive guide
 - **Examples**: [examples/](examples/) - 4 detailed examples
-- **API Docs**: https://docs.aimusicapi.ai
+- **API Docs**: <https://docs.aimusicapi.ai>
 - **Issues**: Report bugs on GitHub
 
 ## License
@@ -323,6 +323,6 @@ MIT License - see [LICENSE](LICENSE)
 
 ---
 
-**Happy music generation! 🎵**
+**Happy music generation!**
 
 For more details, see [CLAUDE.md](CLAUDE.md) or [README.md](README.md).
